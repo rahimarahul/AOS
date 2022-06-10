@@ -1,0 +1,34 @@
+def calculate_lcp(text,pattern):
+    count = 0;
+    for k in range(0, len(pattern)):
+      if text[k] == pattern[k]:
+        count = count+1;
+      else:
+        break;
+
+    return count;
+    
+def build_z_box(text, pattern,b):
+  for i in range(0,len(text)):
+    lcp = calculate_lcp(text[i:],pattern);
+    
+    if(lcp == 0):
+      b[i]=0;
+    else:
+      b[i] = i+lcp-1;
+    
+    print('strings : '+text[i:] +'    '+pattern)
+    print('lcp : '+str(lcp))
+  return b;
+  
+def z_box_EPMP(text,pattern):
+  z = {} # z-box 
+  
+  z = build_z_box(text,pattern,{})
+  #  z-box border:  l = index, r = value 
+  print('\nz-box border : ')
+  print(z)
+
+  print("\nOutput:-----------------------------\n");
+  
+z_box_EPMP('bcdabcd','bc')
